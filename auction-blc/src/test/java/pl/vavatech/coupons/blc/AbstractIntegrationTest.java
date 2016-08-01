@@ -11,11 +11,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import pl.vavatech.auction.blc.SpringConfig;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @Ignore
-@ContextConfiguration(classes = SpringConfig.class)
+@ContextConfiguration(locations = "classpath:spring/*-context.xml")
 @TransactionConfiguration(defaultRollback = true)
 public class AbstractIntegrationTest {
 	@PersistenceContext

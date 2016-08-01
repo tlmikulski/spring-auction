@@ -80,7 +80,7 @@
 	<packaging>war</packaging>
 
 	<build>
-		<finalName>webApplication</finalName>
+		<finalName>auction-www</finalName>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>

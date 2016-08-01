@@ -3,11 +3,9 @@ package pl.vavatech.auction.blc;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ImportResource;
+import org.springframework.context.annotation.Configuration;
 
-@ComponentScan("pl.vavatech.auction.blc")
-@ImportResource("spring/blc-context.xml")
+@Configuration
 public class SpringConfig {
 	@Inject
 	InitializationService initializationService;

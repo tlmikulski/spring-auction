@@ -13,6 +13,7 @@
         http://www.springframework.org/schema/data/jpa 
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
+	<context:component-scan base-package="pl.vavatech.auction.blc" />
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="auction" />
