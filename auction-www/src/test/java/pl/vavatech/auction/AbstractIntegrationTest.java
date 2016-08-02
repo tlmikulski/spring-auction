@@ -1,4 +1,4 @@
-package pl.vavatech.coupons.blc;
+package pl.vavatech.auction;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

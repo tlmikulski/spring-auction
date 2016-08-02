@@ -5,3 +5,7 @@ body{
 .searcher{
 	height: 28px
 }
+
+.searchBar{
+	padding:5px;
+}

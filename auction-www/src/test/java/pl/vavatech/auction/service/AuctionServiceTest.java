@@ -1,4 +1,4 @@
-package pl.vavatech.coupons.blc.service;
+package pl.vavatech.auction.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -8,9 +8,9 @@ import javax.persistence.PersistenceContext;
 
 import org.junit.Test;
 
+import pl.vavatech.auction.AbstractIntegrationTest;
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.service.AuctionService;
-import pl.vavatech.coupons.blc.AbstractIntegrationTest;
 
 public class AuctionServiceTest extends AbstractIntegrationTest {
 	@Inject

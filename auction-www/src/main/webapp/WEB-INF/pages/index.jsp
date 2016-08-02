@@ -3,6 +3,9 @@
 <%@ include file="/WEB-INF/pages/cmm/header.jsp"%>
 <body>
 	<%@ include file="/WEB-INF/pages/cmm/nav.jsp"%>
-	<h1>Hello in auction app</h1>
+	<div class="jumbotron">
+  <h1>Hello, world!</h1>
+  <p>Spring sample app</p>
+</div>
 </body>
 </html>

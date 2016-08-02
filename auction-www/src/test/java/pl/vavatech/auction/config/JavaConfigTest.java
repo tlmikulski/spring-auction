@@ -1,4 +1,4 @@
-package pl.vavatech.coupons.blc.config;
+package pl.vavatech.auction.config;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 
+import pl.vavatech.auction.AbstractIntegrationTest;
 import pl.vavatech.auction.blc.service.AuctionService;
-import pl.vavatech.coupons.blc.AbstractIntegrationTest;
 
 public class JavaConfigTest extends AbstractIntegrationTest {
 	@Inject
