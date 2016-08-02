@@ -1,0 +1,37 @@
+1. Konfig
+1.1 XML
+1.2 Java
+
+
+
+2. Wstrzykiwanie
+2.1 Seter, constructor, Pole
+2.2 Ustawianie property pola, kolekcje, mapy
+
+3. Cykl życia
+3.1 Init
+3.2 Destroy
+
+4. Scopy
+
+5. Praca i interfejsem fabryk
+
+6. Property place holder
+
+7. Autowirind/Inject
+
+8. Value
+
+9. Spring MVC jsp
+
+10. Expception handling
+
+11. Validator
+
+12. KOnwerter
+
+13. AOP
+
+14. JPA
+
+15. Transakcje
