@@ -13,10 +13,10 @@ public class Auction extends BaseEntity {
 	private String title;
 	private String description;
 
-	private BigDecimal currentPrice;
+	private BigDecimal currentPrice = BigDecimal.ZERO;;
 
-	private BigDecimal shippingPrice;
-	private AuctionType auctionType;
+	private BigDecimal shippingPrice = new BigDecimal("9.99");
+	private AuctionType auctionType = AuctionType.BIDDING;;
 	private Integer number = NUMBER_SEQ.getAndIncrement();
 
 	private LocalDateTime expiryDate = LocalDateTime.now();
