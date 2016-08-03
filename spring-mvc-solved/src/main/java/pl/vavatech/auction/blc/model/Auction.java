@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
@@ -12,6 +13,7 @@ import javax.validation.constraints.Size;
 import pl.vavatech.auction.www.component.CurrencyFormat;
 
 public class Auction extends BaseEntity {
+	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
 	@NotNull
 	@Size(max = 10)
 	private String title;
@@ -22,8 +24,7 @@ public class Auction extends BaseEntity {
 	@CurrencyFormat
 	private BigDecimal shippingPrice;
 	private AuctionType auctionType;
-	private Integer number;
-
+	private Integer number = NUMBER_SEQ.getAndIncrement();
 	private LocalDateTime expiryDate = LocalDateTime.now();
 	@OneToMany
 	private Set<Offer> offers = new HashSet();

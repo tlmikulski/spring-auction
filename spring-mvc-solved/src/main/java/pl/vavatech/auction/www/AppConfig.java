@@ -1,5 +1,6 @@
 package pl.vavatech.auction.www;
 
+import java.util.List;
 import java.util.Properties;
 
 import org.springframework.context.MessageSource;
@@ -9,6 +10,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -23,6 +27,8 @@ import org.springframework.web.servlet.view.JstlView;
 import pl.vavatech.auction.blc.BusinessConfig;
 import pl.vavatech.auction.www.component.CurrencyFormatter;
 import pl.vavatech.auction.www.component.RenderingTimeInterceptor;
+
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Configuration
 @EnableWebMvc
@@ -49,16 +55,19 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 		return viewResolver;
 	}
 
-	// @Bean
-	// public MappingJackson2JsonView createMappingJackson2JsonView() {
-	// MappingJackson2JsonView mappingJackson2JsonView = new
-	// MappingJackson2JsonView();
-	// mappingJackson2JsonView.setPrefixJson(true);
-	// return mappingJackson2JsonView;
-	// }
+	@Override
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
+		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
+		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter(
+				builder.build());
+		jsonConverter.getObjectMapper().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		converters.add(jsonConverter);
+	}
+
 	@Bean
 	public SimpleMappingExceptionResolver simpleMappingExceptionResolver() {
 		SimpleMappingExceptionResolver resolver = new SimpleMappingExceptionResolver();
+		resolver.setWarnLogCategory("error");
 		Properties mapping = new Properties();
 		mapping.put(Exception.class.getName(), "cmm/error");
 		resolver.setExceptionMappings(mapping);

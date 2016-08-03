@@ -1,7 +1,7 @@
 package pl.vavatech.auction.blc.model;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -13,7 +13,7 @@ public class Offer extends BaseEntity {
 	@ManyToOne
 	private Auction auction;
 	private BigDecimal bid;
-	private Date date;
+	private LocalDateTime date;
 
 	public User getUser() {
 		return user;
@@ -31,11 +31,19 @@ public class Offer extends BaseEntity {
 		this.bid = bid;
 	}
 
-	public Date getDate() {
+	public LocalDateTime getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(LocalDateTime date) {
 		this.date = date;
+	}
+
+	public Auction getAuction() {
+		return auction;
+	}
+
+	public void setAuction(Auction auction) {
+		this.auction = auction;
 	}
 }

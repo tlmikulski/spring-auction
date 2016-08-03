@@ -4,10 +4,12 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.OneToMany;
 
 public class Auction extends BaseEntity {
+	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
 	private String title;
 	private String description;
 
@@ -15,7 +17,7 @@ public class Auction extends BaseEntity {
 
 	private BigDecimal shippingPrice;
 	private AuctionType auctionType;
-	private Integer number;
+	private Integer number = NUMBER_SEQ.getAndIncrement();
 
 	private LocalDateTime expiryDate = LocalDateTime.now();
 	@OneToMany
