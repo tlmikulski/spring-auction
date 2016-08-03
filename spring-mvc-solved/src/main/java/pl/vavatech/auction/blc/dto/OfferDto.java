@@ -1,4 +1,4 @@
-package pl.vavatech.auction.www.controller.offer;
+package pl.vavatech.auction.blc.dto;
 
 import java.math.BigDecimal;
 

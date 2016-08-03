@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import pl.vavatech.auction.blc.aop.Monitor;
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.repo.AuctionRepo;
 
@@ -23,6 +24,7 @@ public class AuctionService {
 		return repo.find(id);
 	}
 
+	@Monitor
 	public List<Auction> findAll() {
 		return repo.findAll();
 	}

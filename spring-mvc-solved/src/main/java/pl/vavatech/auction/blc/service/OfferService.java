@@ -7,11 +7,11 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import pl.vavatech.auction.blc.dto.OfferDto;
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.model.Offer;
 import pl.vavatech.auction.blc.repo.AuctionRepo;
 import pl.vavatech.auction.blc.repo.OfferRepo;
-import pl.vavatech.auction.www.controller.offer.OfferDto;
 
 @Service
 public class OfferService {
@@ -23,12 +23,13 @@ public class OfferService {
 
 	public Long insert(OfferDto dto) {
 		Auction auction = auctionRepo.findAll().stream()
-				.filter(arg -> arg.getNumber().equals(dto.getAuctionNumber())).findFirst()
-				.orElseThrow(IllegalStateException::new);
+				.filter(arg -> arg.getNumber().equals(dto.getAuctionNumber()))
+				.findFirst().orElseThrow(IllegalStateException::new);
 
 		BigDecimal currentPrice = auction.getCurrentPrice();
 		if (currentPrice != null && currentPrice.compareTo(dto.getBid()) == 1) {
-			throw new IllegalArgumentException("Bid is too small. Minimum " + currentPrice);
+			throw new IllegalArgumentException("Bid is too small. Minimum "
+					+ currentPrice);
 		}
 
 		auction.setCurrentPrice(dto.getBid());

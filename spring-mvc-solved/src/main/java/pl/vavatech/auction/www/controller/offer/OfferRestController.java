@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import pl.vavatech.auction.blc.dto.OfferDto;
 import pl.vavatech.auction.blc.service.OfferService;
 
 @RestController
