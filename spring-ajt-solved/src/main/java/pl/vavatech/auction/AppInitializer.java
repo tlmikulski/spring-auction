@@ -19,13 +19,12 @@ public class AppInitializer implements WebApplicationInitializer {
 
 	@Override
 	public void onStartup(ServletContext container) throws ServletException {
-
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(AppConfig.class);
 		ctx.setServletContext(container);
 
-		ServletRegistration.Dynamic servlet = container.addServlet("dispatcher",
-				new DispatcherServlet(ctx));
+		ServletRegistration.Dynamic servlet = container.addServlet(
+				"dispatcher", new DispatcherServlet(ctx));
 		servlet.setLoadOnStartup(1);
 		servlet.addMapping("/");
 
@@ -37,9 +36,10 @@ public class AppInitializer implements WebApplicationInitializer {
 		characterEncodingFilter.setEncoding("UTF-8");
 		characterEncodingFilter.setForceEncoding(true);
 
-		FilterRegistration.Dynamic characterEncoding = container.addFilter("characterEncoding",
-				characterEncodingFilter);
+		FilterRegistration.Dynamic characterEncoding = container.addFilter(
+				"characterEncoding", characterEncodingFilter);
 		characterEncoding.addMappingForUrlPatterns(
-				EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD), true, "/*");
+				EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD),
+				true, "/*");
 	}
 }
