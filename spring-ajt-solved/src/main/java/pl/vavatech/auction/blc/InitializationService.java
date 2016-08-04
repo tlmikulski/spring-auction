@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.model.AuctionType;
-import pl.vavatech.auction.blc.model.User;
 import pl.vavatech.auction.blc.service.AuctionService;
 
 @Service
@@ -24,9 +23,6 @@ public class InitializationService {
 
 	@Transactional
 	public void init() {
-		em.persist(new User("Jan", "Kowalski"));
-		em.persist(new User("Marek", "Nowak"));
-
 		Auction ssd = new Auction("Dysk SSD");
 		ssd.setAuctionType(AuctionType.BIDDING);
 		ssd.setCurrentPrice(BigDecimal.TEN.add(BigDecimal.valueOf(0.75)));

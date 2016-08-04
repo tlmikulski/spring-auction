@@ -4,18 +4,10 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Offer extends BaseEntity {
-	private User user;
+	private String userName;
 	private Auction auction;
 	private BigDecimal bid;
 	private LocalDateTime date;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public BigDecimal getBid() {
 		return bid;
@@ -39,5 +31,13 @@ public class Offer extends BaseEntity {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }

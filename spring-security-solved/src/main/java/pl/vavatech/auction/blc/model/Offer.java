@@ -8,20 +8,11 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Offer extends BaseEntity {
-	@ManyToOne
-	private User user;
+	private String userName;
 	@ManyToOne
 	private Auction auction;
 	private BigDecimal bid;
 	private LocalDateTime date;
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
 
 	public BigDecimal getBid() {
 		return bid;
@@ -45,5 +36,13 @@ public class Offer extends BaseEntity {
 
 	public void setAuction(Auction auction) {
 		this.auction = auction;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 }
