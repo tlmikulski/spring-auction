@@ -6,8 +6,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+@Entity
 public class Auction extends BaseEntity {
 	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
 	private String title;

@@ -9,11 +9,6 @@
 	<configs>
 	</configs>
 	<autoconfigs>
-		<config>java:pl.vavatech.auction.blc.component.BackDoor</config>
-		<config>java:pl.vavatech.auction.www.AppConfig</config>
-		<config>java:pl.vavatech.auction.blc.component.BeanProcessor</config>
-		<config>java:pl.vavatech.auction.www.component.AuctionValidator</config>
-		<config>java:pl.vavatech.auction.blc.BusinessConfig</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>

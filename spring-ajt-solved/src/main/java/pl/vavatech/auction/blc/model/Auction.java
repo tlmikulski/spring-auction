@@ -13,6 +13,8 @@ import javax.validation.constraints.Size;
 
 import pl.vavatech.auction.www.component.CurrencyFormat;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Auction extends BaseEntity {
 	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
@@ -28,6 +30,7 @@ public class Auction extends BaseEntity {
 	private AuctionType auctionType = AuctionType.BIDDING;
 	private Integer number = NUMBER_SEQ.getAndIncrement();
 	private LocalDateTime expiryDate = LocalDateTime.now();
+	@JsonIgnore
 	@OneToMany
 	private Set<Offer> offers = new HashSet();
 
