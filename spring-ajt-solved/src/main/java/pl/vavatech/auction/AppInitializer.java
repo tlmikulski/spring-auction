@@ -4,7 +4,6 @@ import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
-import javax.servlet.FilterRegistration.Dynamic;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
@@ -12,7 +11,6 @@ import javax.servlet.ServletRegistration;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.DispatcherServlet;
 
 import pl.vavatech.auction.www.AppConfig;
@@ -25,10 +23,6 @@ public class AppInitializer implements WebApplicationInitializer {
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(AppConfig.class);
 		ctx.setServletContext(container);
-
-		Dynamic securityFiler = container.addFilter("springSecurityFilterChain",
-				new DelegatingFilterProxy("springSecurityFilterChain"));
-		securityFiler.addMappingForUrlPatterns(EnumSet.allOf(DispatcherType.class), false, "/*");
 
 		ServletRegistration.Dynamic servlet = container.addServlet("dispatcher",
 				new DispatcherServlet(ctx));

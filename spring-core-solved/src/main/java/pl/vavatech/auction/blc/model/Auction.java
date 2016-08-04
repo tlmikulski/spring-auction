@@ -6,23 +6,19 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-
-@Entity
 public class Auction extends BaseEntity {
 	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
 	private String title;
 	private String description;
 
-	private BigDecimal currentPrice = BigDecimal.ZERO;;
+	private BigDecimal currentPrice = BigDecimal.ZERO;
 
 	private BigDecimal shippingPrice = new BigDecimal("9.99");
-	private AuctionType auctionType = AuctionType.BIDDING;;
+	private AuctionType auctionType = AuctionType.BIDDING;
 	private Integer number = NUMBER_SEQ.getAndIncrement();
-
 	private LocalDateTime expiryDate = LocalDateTime.now();
-	@OneToMany
+
+	private String creatorUserName;
 	private Set<Offer> offers = new HashSet();
 
 	public Auction() {
@@ -95,4 +91,13 @@ public class Auction extends BaseEntity {
 	public void setOffers(Set<Offer> offers) {
 		this.offers = offers;
 	}
+
+	public String getCreatorUserName() {
+		return creatorUserName;
+	}
+
+	public void setCreatorUserName(String creatorUserName) {
+		this.creatorUserName = creatorUserName;
+	}
+
 }

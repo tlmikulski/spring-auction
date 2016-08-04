@@ -8,15 +8,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 import pl.vavatech.auction.www.component.CurrencyFormat;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Auction extends BaseEntity {
 	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
-	@NotNull
+	@NotEmpty
 	@Size(max = 10)
 	private String title;
 	private String description;
@@ -28,7 +31,11 @@ public class Auction extends BaseEntity {
 	private AuctionType auctionType = AuctionType.BIDDING;
 	private Integer number = NUMBER_SEQ.getAndIncrement();
 	private LocalDateTime expiryDate = LocalDateTime.now();
-	@OneToMany
+
+	private String creatorUserName;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "auction")
 	private Set<Offer> offers = new HashSet();
 
 	public Auction() {
@@ -101,4 +108,13 @@ public class Auction extends BaseEntity {
 	public void setOffers(Set<Offer> offers) {
 		this.offers = offers;
 	}
+
+	public String getCreatorUserName() {
+		return creatorUserName;
+	}
+
+	public void setCreatorUserName(String creatorUserName) {
+		this.creatorUserName = creatorUserName;
+	}
+
 }

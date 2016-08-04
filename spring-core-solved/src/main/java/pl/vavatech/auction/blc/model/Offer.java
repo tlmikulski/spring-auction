@@ -3,14 +3,8 @@ package pl.vavatech.auction.blc.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-
-@Entity
 public class Offer extends BaseEntity {
-	@ManyToOne
 	private User user;
-	@ManyToOne
 	private Auction auction;
 	private BigDecimal bid;
 	private LocalDateTime date;

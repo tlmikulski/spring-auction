@@ -4,8 +4,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="java.time.format.DateTimeFormatter"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
 <%@ include file="/WEB-INF/pages/cmm/header.jsp"%>
 <body>
 	<%@ include file="/WEB-INF/pages/cmm/nav.jsp"%>
@@ -58,16 +56,11 @@
 				<td>${auction.auctionType.fullName}</td>
 				<td>${auction.expiryDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))}</td>
 				<td><a href="auctions/${auction.id}/show"><i
-						class=" glyphicon glyphicon-search"></i></a> 
-						
-						<sec:authorize	access="isAuthenticated()">
-
-						<a href="auctions/${auction.id}/edit"><i
-							class=" glyphicon glyphicon-pencil"></i></a>
-					</sec:authorize> <sec:authorize access="hasRole('ADMIN')">
-						<a href="auctions/${auction.id}/delete"><i
-							class=" glyphicon glyphicon-remove-circle"></i></a>
-					</sec:authorize></td>
+						class=" glyphicon glyphicon-search"></i></a> <a
+					href="auctions/${auction.id}/edit"><i
+						class=" glyphicon glyphicon-pencil"></i></a> <a
+					href="auctions/${auction.id}/delete"><i
+						class=" glyphicon glyphicon-remove-circle"></i></a></td>
 			</tr>
 		</c:forEach>
 	</table>
