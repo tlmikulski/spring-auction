@@ -8,15 +8,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Size;
-
-import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class Auction extends BaseEntity {
 	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
-	@NotEmpty
-	@Size(max = 10)
 	private String title;
 	private String description;
 

@@ -53,7 +53,7 @@
 				<td>${auction.currentPrice}</td>
 				<td>${auction.auctionType.fullName}</td>
 				<td>${auction.expiryDate.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))}</td>
-				<td><a href="#"><i
+				<td><a href="#show"><i
 						class=" glyphicon glyphicon-search"></i></a>
 						 
 						<a href="auctions/${auction.id}/edit"><i

@@ -16,6 +16,7 @@
 			<spring:url value="/auctions" var="auctionsUrl" />
 			<li><a href="${auctionsUrl}">Auctions</a></li>
 			<li><a href="${contextPath}/rest/auctions">Auctions as json</a></li>
+			<li><a href="${contextPath}/swagger-ui.html">Swagger</a></li>
 			<sec:authorize access="hasAnyRole('ROLE_ADMIN', 'ROLE_CREATOR')">
 				<li><a href="${contextPath}/auctions/new">Add auction</a></li>
 			</sec:authorize>

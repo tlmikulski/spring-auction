@@ -14,6 +14,7 @@ import pl.vavatech.auction.blc.model.Auction;
 
 @Controller
 public class HelloWorldController {
+
 	@RequestMapping("/helloWorld/{month}/{type}")
 	public ModelAndView hello(@PathVariable("month") Integer month,
 			@PathVariable("type") String type,
