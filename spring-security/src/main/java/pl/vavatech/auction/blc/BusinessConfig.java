@@ -26,7 +26,6 @@ import pl.vavatech.auction.blc.service.UserService;
 @Configuration
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
-// tx
 @ComponentScan("pl.vavatech.auction.blc")
 @PropertySource(value = { "classpath:config.properties" })
 public class BusinessConfig {
