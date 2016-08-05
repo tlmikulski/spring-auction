@@ -4,10 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import pl.vavatech.auction.blc.model.Offer;
 
 import com.google.common.collect.Lists;
 
+@Repository
 public class InMemoryOfferRepo implements OfferRepo {
 	private Long currentSequence = 1L;
 	private Map<Long, Offer> data = new HashMap();

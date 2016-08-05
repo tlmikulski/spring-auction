@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@ControllerAdvice
+@ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
 
 	Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
@@ -58,7 +59,8 @@ public class GlobalExceptionHandler {
 		headers.setContentType(MediaType.TEXT_PLAIN);
 
 		logger.error(exception.getMessage(), exception);
-		return new ResponseEntity(exception.toString(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity(new ServerError(exception.toString()), headers,
+				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	private String formatErrorMsg(final FieldError fieldError) {

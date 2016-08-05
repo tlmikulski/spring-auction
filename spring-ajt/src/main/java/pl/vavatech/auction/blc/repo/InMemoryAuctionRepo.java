@@ -6,10 +6,13 @@ import java.util.Map;
 
 import javax.annotation.PostConstruct;
 
+import org.springframework.stereotype.Repository;
+
 import pl.vavatech.auction.blc.model.Auction;
 
 import com.google.common.collect.Lists;
 
+@Repository
 public class InMemoryAuctionRepo implements AuctionRepo {
 	private Long currentSequence = 1L;
 	private Map<Long, Auction> data = new HashMap();

@@ -14,8 +14,6 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import pl.vavatech.auction.www.component.CurrencyFormat;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 @Entity
 public class Auction extends BaseEntity {
 	private static AtomicInteger NUMBER_SEQ = new AtomicInteger(1);
@@ -34,7 +32,6 @@ public class Auction extends BaseEntity {
 
 	private String creatorUserName;
 
-	@JsonIgnore
 	@OneToMany(mappedBy = "auction")
 	private Set<Offer> offers = new HashSet();
 

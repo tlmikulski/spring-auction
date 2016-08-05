@@ -6,16 +6,13 @@ import java.time.LocalDateTime;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import pl.vavatech.auction.blc.aop.Trace;
 import pl.vavatech.auction.blc.dto.OfferDto;
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.model.Offer;
 import pl.vavatech.auction.blc.repo.AuctionRepo;
 import pl.vavatech.auction.blc.repo.OfferRepo;
 
-@Transactional
 @Service
 public class OfferService {
 	@Inject
@@ -24,7 +21,6 @@ public class OfferService {
 	@Inject
 	private AuctionRepo auctionRepo;
 
-	@Trace
 	public Long insert(OfferDto dto) {
 		Auction auction = auctionRepo
 				.findAll()

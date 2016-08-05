@@ -5,7 +5,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -14,8 +13,9 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
-@ControllerAdvice
+@ControllerAdvice(annotations = RestController.class)
 public class GlobalExceptionHandler {
 
 	Logger logger = Logger.getLogger(GlobalExceptionHandler.class);
@@ -55,10 +55,11 @@ public class GlobalExceptionHandler {
 	@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
 	public ResponseEntity<ServerError> handleException(final Exception exception) {
 		HttpHeaders headers = new HttpHeaders();
-		headers.setContentType(MediaType.TEXT_PLAIN);
+		// headers.setContentType(MediaType.TEXT_PLAIN);
 
 		logger.error(exception.getMessage(), exception);
-		return new ResponseEntity(exception.toString(), headers, HttpStatus.INTERNAL_SERVER_ERROR);
+		return new ResponseEntity(new ServerError(exception.toString()), headers,
+				HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
 	private String formatErrorMsg(final FieldError fieldError) {
