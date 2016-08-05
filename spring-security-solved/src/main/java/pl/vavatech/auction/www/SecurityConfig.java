@@ -6,6 +6,7 @@ import org.springframework.context.annotation.ImportResource;
 @Configuration
 @ImportResource("classpath:spring-security.xml")
 public class SecurityConfig {
+
 	//
 	// @Override
 	// protected void configure(HttpSecurity http) throws Exception {

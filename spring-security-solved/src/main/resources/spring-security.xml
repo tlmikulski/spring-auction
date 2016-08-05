@@ -7,9 +7,10 @@
                                  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
 	<http auto-config="true" use-expressions="true" pattern="/rest/**"
-		realm="Vavatech">
+		realm="Vavatech" entry-point-ref="ajaxAwareLoginUrlAuthenticationEntryPoint">
 		<intercept-url pattern="/**" access="hasRole('ROLE_REST')" />
 		<http-basic />
+		<access-denied-handler ref="accessDeniedHandlerImpl"/>
 	</http>
 
 	<http auto-config="true" use-expressions="true" pattern="/**">
@@ -22,7 +23,7 @@
 		<form-login default-target-url="/"
 			always-use-default-target="false" />
 
-		<logout logout-url="/logout" logout-success-url="/?status=logout" />
+		<logout logout-url="/logout" delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="/?status=logout" />
 		<access-denied-handler error-page="/?status=access-denied" />
 
 		<session-management>

@@ -25,7 +25,7 @@
 		<ul class="nav navbar-nav navbar-right">
 
 			<li><a href="${contextPath}/login">Login</a></li>
-			<li><a href="${contextPath}/logout">Logout <sec:authorize
+			<li><a href="#" onClick="$('#logout').click()">Logout <sec:authorize
 						access="isAuthenticated()">
 						<i style="color: white" class="glyphicon glyphicon-user glyphicon"></i>
 						<span style="color: white"> ${principal.username} </span>
@@ -34,6 +34,13 @@
 		</ul>
 	</div>
 </nav>
+
+<c:url var="logoutUrl" value="/logout"/>
+<form action="${logoutUrl}" method="post" style="display:none">
+  <input type="submit" value="Log out" id="logout"/>
+  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+</form>
+
 
 <c:if test="${not empty param.status}">
 	<div class="alert alert-danger" role="alert">
