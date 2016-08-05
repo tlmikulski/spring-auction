@@ -6,36 +6,9 @@
                                  http://www.springframework.org/schema/security
                                  http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
-	<http auto-config="true" use-expressions="true" pattern="/rest/**"
-		realm="Vavatech">
-		<intercept-url pattern="/**" access="hasRole('ROLE_REST')" />
-		<http-basic />
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/**" access="isAnonymous() or isAuthenticated()" />
 	</http>
-
-	<http auto-config="true" use-expressions="true" pattern="/**">
-		<intercept-url pattern="/auctions/**"
-			access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/dba/**"
-			access="hasRole('ROLE_DBA') or hasRole('ROLE_ADMIN')" />
-		<intercept-url pattern="/" access="isAnonymous()" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
-		<form-login default-target-url="/"
-			always-use-default-target="false" />
-
-		<logout logout-url="/logout" logout-success-url="/?status=logout" />
-		<access-denied-handler error-page="/?status=access-denied" />
-
-		<session-management>
-			<concurrency-control error-if-maximum-exceeded="true"
-				max-sessions="1" />
-		</session-management>
-		<csrf/>
-	</http>
-
-
-	<global-method-security pre-post-annotations="enabled" >
-
-	</global-method-security>
 
 	<authentication-manager>
 		<authentication-provider>

@@ -6,7 +6,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -25,7 +24,6 @@ public class AuctionService {
 	@Inject
 	private AuctionRepo repo;
 
-	@PreAuthorize("@strageMethodSecurityHandler.hasRight(true)")
 	public Auction find(Long id) {
 		return repo.find(id);
 	}
@@ -36,7 +34,6 @@ public class AuctionService {
 	}
 
 	@Trace
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Long insert(Auction auction) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		String name = auth.getName();
@@ -44,7 +41,6 @@ public class AuctionService {
 		return repo.insert(auction);
 	}
 
-	@PreAuthorize("hasRole('ADMIN') or #auction.creatorUserName == authentication.name")
 	public void update(Auction auction) {
 		repo.update(auction);
 	}
