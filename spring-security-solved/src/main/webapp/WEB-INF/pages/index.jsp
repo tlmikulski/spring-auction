@@ -7,3 +7,20 @@
   </div>
   
 <%@ include file="/WEB-INF/pages/cmm/footer.jsp"%>
+
+<script>
+$(document).ready(function(){
+	$.ajax({
+		  type: "POST",
+		  url: 'http://localhost:9000/resource/',
+		  data: {},
+		  success: function(a,b,c){
+			  alert(c.getResponseHeader('Cookie'));
+		  },
+		  error: function (a, b, c) {
+			  alert(a.getAllResponseHeaders());
+		   }
+		});
+	
+})
+</script>

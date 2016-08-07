@@ -25,7 +25,7 @@ public class AuctionService {
 	@Inject
 	private AuctionRepo repo;
 
-	@PreAuthorize("@strageMethodSecurityHandler.hasRight(true)")
+	@PreAuthorize("@strageMethodSecurityHandler.hasRight(false)")
 	public Auction find(Long id) {
 		return repo.find(id);
 	}
@@ -38,7 +38,8 @@ public class AuctionService {
 	@Trace
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Long insert(Auction auction) {
-		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		Authentication auth = SecurityContextHolder.getContext()
+				.getAuthentication();
 		String name = auth.getName();
 		auction.setCreatorUserName(name);
 		return repo.insert(auction);

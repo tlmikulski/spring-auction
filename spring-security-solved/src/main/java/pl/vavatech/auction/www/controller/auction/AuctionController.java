@@ -21,8 +21,8 @@ import pl.vavatech.auction.blc.model.Offer;
 import pl.vavatech.auction.blc.service.AuctionService;
 import pl.vavatech.auction.www.component.AuctionValidator;
 
-@RequestMapping("/auctions")
 @Controller
+@RequestMapping("/auctions")
 public class AuctionController {
 
 	@Inject
@@ -64,8 +64,9 @@ public class AuctionController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	private String save(@Valid @ModelAttribute("auction") Auction auction, BindingResult result,
-			Model model, RedirectAttributes redirectAttributes) {
+	private String save(@Valid @ModelAttribute("auction") Auction auction,
+			BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
 
 		auctionValidator.validate(auction, result);
 
@@ -77,7 +78,8 @@ public class AuctionController {
 			redirectAttributes.addFlashAttribute("msg", "Successfully added..");
 			auctionService.insert(auction);
 		} else {
-			redirectAttributes.addFlashAttribute("msg", "Successfully updated..");
+			redirectAttributes.addFlashAttribute("msg",
+					"Successfully updated..");
 			auctionService.update(auction);
 		}
 
@@ -86,7 +88,8 @@ public class AuctionController {
 
 	// TODO
 	@RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
-	private String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+	private String delete(@PathVariable("id") Long id,
+			RedirectAttributes redirectAttributes) {
 		auctionService.delete(id);
 		redirectAttributes.addFlashAttribute("msg", "Successfully deleted..");
 		return "redirect:/auctions";
