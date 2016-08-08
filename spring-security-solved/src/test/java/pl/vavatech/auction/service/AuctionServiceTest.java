@@ -21,6 +21,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import pl.vavatech.auction.AbstractIntegrationTest;
 import pl.vavatech.auction.blc.model.Auction;
+import pl.vavatech.auction.blc.repo.AutoAuctionRepo;
 import pl.vavatech.auction.blc.service.AuctionService;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -28,6 +29,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class AuctionServiceTest extends AbstractIntegrationTest {
 	@Inject
 	AuctionService service;
+	@Inject
+	AutoAuctionRepo autoAuctionRepo;
 
 	@PersistenceContext
 	private EntityManager em;
@@ -36,7 +39,6 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 	private WebApplicationContext wac;
 	@Autowired
 	ObjectMapper ob;
-
 	private MockMvc mockMvc;
 
 	@Before
@@ -46,6 +48,8 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 
 	@Test
 	public void getAccount() throws Exception {
+		long count = autoAuctionRepo.c();
+
 		Auction auction = new Auction("Laptop");
 
 		// when

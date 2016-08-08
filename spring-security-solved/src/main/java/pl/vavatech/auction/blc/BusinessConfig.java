@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -28,6 +29,7 @@ import pl.vavatech.auction.blc.service.UserService;
 @EnableTransactionManagement
 @ComponentScan("pl.vavatech.auction.blc")
 @PropertySource(value = { "classpath:config.properties" })
+@EnableJpaRepositories(value = "pl.vavatech.auction.blc.repo")
 public class BusinessConfig {
 	@Value("${db.driverClassName}")
 	private String driverClassName;
@@ -54,7 +56,8 @@ public class BusinessConfig {
 		LocalContainerEntityManagerFactoryBean emFactory = new LocalContainerEntityManagerFactoryBean();
 		emFactory.setPersistenceUnitName("auction");
 		emFactory.setDataSource(dataSource());
-		emFactory.setPackagesToScan(new String[] { "pl.vavatech.auction.blc.model" });
+		emFactory
+				.setPackagesToScan(new String[] { "pl.vavatech.auction.blc.model" });
 		emFactory.setJpaVendorAdapter(createHibernateAdapter());
 		emFactory.getJpaPropertyMap().putAll(getHibernateProperties());
 		return emFactory;

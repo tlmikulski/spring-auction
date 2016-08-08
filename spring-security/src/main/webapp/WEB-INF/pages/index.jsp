@@ -7,3 +7,4 @@
   </div>
   
 <%@ include file="/WEB-INF/pages/cmm/footer.jsp"%>
+<script src="http://localhost:9000/user"></script>
