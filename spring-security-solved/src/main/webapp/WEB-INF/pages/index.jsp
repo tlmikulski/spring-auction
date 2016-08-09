@@ -10,17 +10,16 @@
 
 <script>
 $(document).ready(function(){
+	var xsrf = document.cookie.split("=")[1];
 	$.ajax({
 		  type: "POST",
-		  url: 'http://localhost:9000/resource/',
+		  url: 'http://localhost:8080/auction-security-solved/rest/auctions',
 		  data: {},
+		  headers :{'X-XSRF-TOKEN': xsrf},
 		  success: function(a,b,c){
-			  alert(c.getResponseHeader('Cookie'));
 		  },
 		  error: function (a, b, c) {
-			  alert(a.getAllResponseHeaders());
 		   }
 		});
-	
 })
 </script>

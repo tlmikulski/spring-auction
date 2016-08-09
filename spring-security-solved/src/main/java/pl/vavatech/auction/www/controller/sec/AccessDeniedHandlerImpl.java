@@ -20,11 +20,15 @@ public class AccessDeniedHandlerImpl implements AccessDeniedHandler {
 			"hasHeader('X-Requested-With','XMLHttpRequest')");
 
 	@Override
-	public void handle(HttpServletRequest request, HttpServletResponse response,
-			AccessDeniedException accessDeniedException) throws IOException, ServletException {
+	public void handle(HttpServletRequest request,
+			HttpServletResponse response,
+			AccessDeniedException accessDeniedException) throws IOException,
+			ServletException {
 		if (requestMatcher.matches(request)) {
-			response.sendError(HttpStatus.UNAUTHORIZED.value(), "Login required");
+			response.sendError(HttpStatus.UNAUTHORIZED.value(),
+					"Login required");
+		} else {
+			response.sendError(HttpStatus.FORBIDDEN.value());
 		}
-		response.sendError(HttpStatus.FORBIDDEN.value());
 	}
 }
