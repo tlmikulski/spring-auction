@@ -26,16 +26,19 @@
 		<intercept-url pattern="/dba/**"
 			access="hasRole('ROLE_DBA') or hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/" access="permitAll" />
+		<intercept-url pattern="/ala" access="isFullyAuthenticated()" />
+		<intercept-url pattern="/ewa" access="isRememberMe()" />
 		<intercept-url pattern="/**" access="isAuthenticated()" />
 		<form-login default-target-url="/" 
-			always-use-default-target="false" login-processing-url="/login"/>
+			always-use-default-target="true" login-processing-url="/login"/>
 
 		<logout logout-url="/logout" delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="/?status=logout" />
+		<remember-me use-secure-cookie="false" remember-me-cookie="rem" token-validity-seconds="600" />
 		<access-denied-handler error-page="/?status=access-denied" />
 
 		<session-management>
 			<concurrency-control error-if-maximum-exceeded="true"
-				max-sessions="1" />
+				max-sessions="2" />
 		</session-management>
 		<csrf />
 	</http>
