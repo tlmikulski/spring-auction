@@ -24,11 +24,11 @@ import org.springframework.web.servlet.handler.SimpleMappingExceptionResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.fasterxml.jackson.databind.SerializationFeature;
+
 import pl.vavatech.auction.blc.BusinessConfig;
 import pl.vavatech.auction.www.component.CurrencyFormatter;
 import pl.vavatech.auction.www.component.RenderingTimeInterceptor;
-
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 @Configuration
 @ComponentScan(basePackages = "pl.vavatech.auction.www")
@@ -56,14 +56,11 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Override
-	public void configureMessageConverters(
-			List<HttpMessageConverter<?>> converters) {
+	public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
 		Jackson2ObjectMapperBuilder builder = new Jackson2ObjectMapperBuilder();
-		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter(
-				builder.build());
+		MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter(builder.build());
 		jsonConverter.setPrettyPrint(true);
-		jsonConverter.getObjectMapper().disable(
-				SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+		jsonConverter.getObjectMapper().disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
 		converters.add(jsonConverter);
 	}
 
@@ -85,8 +82,9 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
-		registry.addResourceHandler("/resources/**").addResourceLocations(
-				"/WEB-INF/resources/");
+		registry.addResourceHandler("/resources/**").addResourceLocations("/WEB-INF/resources/");
+		registry.addResourceHandler("swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
+		registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
 	}
 
 	@Bean

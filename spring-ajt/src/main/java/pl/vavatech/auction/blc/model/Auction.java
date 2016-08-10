@@ -11,7 +11,9 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import io.swagger.annotations.ApiModelProperty;
 import pl.vavatech.auction.www.component.CurrencyFormat;
 
 @Entity
@@ -28,6 +30,8 @@ public class Auction extends BaseEntity {
 	private BigDecimal shippingPrice = new BigDecimal("9.99");
 	private AuctionType auctionType = AuctionType.BIDDING;
 	private Integer number = NUMBER_SEQ.getAndIncrement();
+	@ApiModelProperty(example = "2016-09-26T12:34")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime expiryDate = LocalDateTime.now();
 
 	private String creatorUserName;
