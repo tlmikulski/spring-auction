@@ -30,7 +30,7 @@ public class Auction extends BaseEntity {
 	private BigDecimal shippingPrice = new BigDecimal("9.99");
 	private AuctionType auctionType = AuctionType.BIDDING;
 	private Integer number = NUMBER_SEQ.getAndIncrement();
-	@ApiModelProperty(example = "2016-09-26T12:34")
+	@ApiModelProperty(example = "2016-09-26 12:34")
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	private LocalDateTime expiryDate = LocalDateTime.now();
 

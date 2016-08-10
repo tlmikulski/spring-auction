@@ -21,10 +21,9 @@ import pl.vavatech.auction.blc.model.Offer;
 import pl.vavatech.auction.blc.service.AuctionService;
 import pl.vavatech.auction.www.component.AuctionValidator;
 
-@RequestMapping("/auctions")
 @Controller
+@RequestMapping("/auctions")
 public class AuctionController {
-
 	@Inject
 	private AuctionService auctionService;
 	@Inject
@@ -64,8 +63,8 @@ public class AuctionController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	private String save(@Valid @ModelAttribute("auction") Auction auction, BindingResult result,
-			Model model, RedirectAttributes redirectAttributes) {
+	private String save(@Valid @ModelAttribute("auction") Auction auction, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
 
 		auctionValidator.validate(auction, result);
 

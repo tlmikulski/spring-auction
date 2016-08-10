@@ -39,8 +39,8 @@ public class AuctionController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	private String save(@Valid @ModelAttribute("auction") Auction auction, BindingResult result,
-			Model model, RedirectAttributes redirectAttributes) {
+	private String save(@Valid @ModelAttribute("auction") Auction auction, BindingResult result, Model model,
+			RedirectAttributes redirectAttributes) {
 
 		if (result.hasErrors()) {
 			return "auction/form";

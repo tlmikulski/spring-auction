@@ -39,8 +39,7 @@ public class LoggingAspect {
 		long elapsed = sw.elapsed(TimeUnit.MILLISECONDS);
 		if (elapsed > maxTime) {
 
-			String params = Arrays.asList(pjp.getArgs()).stream()
-					.map(arg -> ToStringBuilder.reflectionToString(arg))
+			String params = Arrays.asList(pjp.getArgs()).stream().map(arg -> ToStringBuilder.reflectionToString(arg))
 					.collect(Collectors.joining(", "));
 
 			log.error("++++++  method " + pjp.getSignature() + "( " + params + ") " + elapsed);
@@ -53,7 +52,7 @@ public class LoggingAspect {
 	// Stopwatch sw = Stopwatch.createStarted();
 	// Object obj = proceedingJP.proceed();
 	// sw.stop();
-	// log.info("++++++  method " + proceedingJP.getSignature().getName() + " "
+	// log.info("++++++ method " + proceedingJP.getSignature().getName() + " "
 	// + sw.elapsed(TimeUnit.MILLISECONDS));
 	// return obj;
 	//
@@ -64,7 +63,8 @@ public class LoggingAspect {
 	// System.out.println("@After:" + new Date());
 	// }
 	//
-	// @Before("execution(* pl.vavatech.auction.blc.service.AuctionService+.*(..))")
+	// @Before("execution(*
+	// pl.vavatech.auction.blc.service.AuctionService+.*(..))")
 	// public void userAdvice() {
 	// System.out.println("find my advice before your task.");
 	// }
