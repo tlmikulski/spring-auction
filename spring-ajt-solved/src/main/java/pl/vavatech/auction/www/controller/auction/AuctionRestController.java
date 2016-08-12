@@ -9,11 +9,13 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import pl.vavatech.auction.blc.model.Auction;
+import pl.vavatech.auction.blc.repo.FindCriteria;
 import pl.vavatech.auction.blc.service.AuctionService;
 
 @RestController
@@ -26,6 +28,11 @@ public class AuctionRestController {
 	@RequestMapping
 	private List<Auction> all() {
 		return auctionService.findAll();
+	}
+
+	@RequestMapping(value = "/cirteria", method = RequestMethod.POST)
+	private List<Auction> findByCriteria(@RequestBody FindCriteria criteria) {
+		return auctionService.findAll(criteria);
 	}
 
 	@RequestMapping("/insert")

@@ -47,4 +47,10 @@ public class InMemoryAuctionRepo implements AuctionRepo {
 		return Lists.newArrayList(data.values());
 	}
 
+	@Override
+	public List<Auction> findAll(FindCriteria criteria) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

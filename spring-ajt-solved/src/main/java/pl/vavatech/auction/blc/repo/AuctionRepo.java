@@ -14,4 +14,6 @@ public interface AuctionRepo {
 	void update(Auction auction);
 
 	void delete(Long id);
+
+	List<Auction> findAll(FindCriteria criteria);
 }

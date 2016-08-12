@@ -36,7 +36,7 @@ public class InitializationService {
 		ddr.setCurrentPrice(BigDecimal.ONE.add(BigDecimal.valueOf(0.75)));
 		ddr.setShippingPrice(BigDecimal.valueOf(4.99));
 		ddr.setExpiryDate(LocalDateTime.now().plusDays(2));
-		ssd.setDescription("Super DDR 3 8GB");
+		ddr.setDescription("Super DDR 3 8GB");
 		service.insert(ddr);
 
 	}

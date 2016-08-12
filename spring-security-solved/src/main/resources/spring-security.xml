@@ -11,29 +11,33 @@
 		realm="Vavatech" entry-point-ref="ajaxAwareLoginUrlAuthenticationEntryPoint">
 		<intercept-url pattern="/**" access="hasRole('ROLE_REST')" />
 		<http-basic />
-		<access-denied-handler ref="accessDeniedHandlerImpl"/>
-		<csrf token-repository-ref="tokenRepository"  /> 
+		<access-denied-handler ref="accessDeniedHandlerImpl" />
+		<csrf token-repository-ref="tokenRepository" />
 	</http>
-	
+
 	<beans:bean id="tokenRepository"
-	class="org.springframework.security.web.csrf.CookieCsrfTokenRepository">
+		class="org.springframework.security.web.csrf.CookieCsrfTokenRepository">
 		<beans:property name="cookieHttpOnly" value="false" />
 	</beans:bean>
 
-	<http auto-config="true" use-expressions="true" pattern="/**">
+	<http auto-config="true" use-expressions="true" pattern="/**" >
 		<intercept-url pattern="/auctions/**"
 			access="hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/dba/**"
 			access="hasRole('ROLE_DBA') or hasRole('ROLE_ADMIN')" />
 		<intercept-url pattern="/" access="permitAll" />
-		<intercept-url pattern="/ala" access="isFullyAuthenticated()" />
-		<intercept-url pattern="/ewa" access="isRememberMe()" />
-		<intercept-url pattern="/**" access="isAuthenticated()" />
-		<form-login default-target-url="/" 
-			always-use-default-target="true" login-processing-url="/login"/>
+		<intercept-url pattern="/full" access="isFullyAuthenticated()" />
+		<intercept-url pattern="/rm" access="isRememberMe()" />
 
-		<logout logout-url="/logout" delete-cookies="JSESSIONID" invalidate-session="true" logout-success-url="/?status=logout" />
-		<remember-me use-secure-cookie="false" remember-me-cookie="rem" token-validity-seconds="600" />
+		<intercept-url pattern="/**" access="isAuthenticated()" />
+		<form-login default-target-url="/"
+			always-use-default-target="true" login-processing-url="/login" />
+	
+
+		<logout logout-url="/logout" delete-cookies="JSESSIONID"
+			invalidate-session="true" logout-success-url="/?status=logout" />
+		<remember-me use-secure-cookie="false" remember-me-cookie="rem"
+			token-validity-seconds="600" />
 		<access-denied-handler error-page="/?status=access-denied" />
 
 		<session-management>
@@ -42,9 +46,8 @@
 		</session-management>
 		<csrf />
 	</http>
-
-
-	<global-method-security pre-post-annotations="enabled" >
+	
+	<global-method-security pre-post-annotations="enabled">
 
 	</global-method-security>
 

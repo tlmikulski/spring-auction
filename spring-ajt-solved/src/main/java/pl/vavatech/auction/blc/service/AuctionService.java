@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.vavatech.auction.blc.aop.Trace;
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.repo.AuctionRepo;
+import pl.vavatech.auction.blc.repo.FindCriteria;
 
 @Transactional
 @Service
@@ -27,8 +28,15 @@ public class AuctionService {
 	}
 
 	@Trace
+	@Transactional(readOnly = true)
 	public List<Auction> findAll() {
 		return repo.findAll();
+	}
+
+	@Trace
+	@Transactional(readOnly = true)
+	public List<Auction> findAll(FindCriteria findCriteria) {
+		return repo.findAll(findCriteria);
 	}
 
 	@Trace
