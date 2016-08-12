@@ -1,4 +1,4 @@
-package pl.vavatech.auction;
+package pl.vavatech.auction.www;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,9 +14,11 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.transaction.annotation.Transactional;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Ignore
+@Transactional
 @Rollback
 @WebAppConfiguration
 @ContextConfiguration(classes = MvcConfig.class)
@@ -33,8 +35,8 @@ public class AbstractIntegrationTest {
 
 	@Before
 	public void setUp() throws Exception {
-		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-				"admin", "password");
+		UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken("admin",
+				"password");
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 	}
 }

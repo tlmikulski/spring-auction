@@ -1,4 +1,4 @@
-package pl.vavatech.auction.service;
+package pl.vavatech.auction.www.service;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -19,12 +19,12 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import pl.vavatech.auction.AbstractIntegrationTest;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import pl.vavatech.auction.blc.model.Auction;
 import pl.vavatech.auction.blc.repo.AutoAuctionRepo;
 import pl.vavatech.auction.blc.service.AuctionService;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import pl.vavatech.auction.www.AbstractIntegrationTest;
 
 public class AuctionServiceTest extends AbstractIntegrationTest {
 	@Inject
@@ -47,8 +47,8 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 	}
 
 	@Test
-	public void getAccount() throws Exception {
-		long count = autoAuctionRepo.c();
+	public void shouldFindAccounsByRest() throws Exception {
+		long count = autoAuctionRepo.count();
 
 		Auction auction = new Auction("Laptop");
 
@@ -56,23 +56,20 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 		service.insert(auction);
 
 		String contentAsString = this.mockMvc
-				.perform(
-						get("/rest/auctions")
-								.accept(MediaType
-										.parseMediaType("application/json;charset=UTF-8")))
-				.andExpect(status().isOk())
-				.andExpect(
-						content().contentTypeCompatibleWith("application/json"))
+				.perform(get("/rest/auctions").accept(MediaType.parseMediaType("application/json;charset=UTF-8")))
+				.andExpect(status().isOk()).andExpect(content().contentTypeCompatibleWith("application/json"))
 				.andReturn().getResponse().getContentAsString();
 
 		List value = ob.readValue(contentAsString, List.class);
 
-		assertThat(value).hasSize(2);
+		assertThat(value).hasSize((int) (count + 1));
 
 	}
 
 	@Test
 	public void shouldAddAuction() throws Exception {
+		long count = autoAuctionRepo.count();
+
 		// given
 		Long auctionCount = count(Auction.class);
 
@@ -87,6 +84,8 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 
 	@Test
 	public void shouldUpdateAuction() throws Exception {
+		long count = autoAuctionRepo.count();
+
 		// given
 		Long auctionCount = count(Auction.class);
 		Long auctionId = service.insert(new Auction("Laptop"));

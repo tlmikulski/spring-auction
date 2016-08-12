@@ -23,7 +23,6 @@ public class AuctionRestController {
 	@Inject
 	private AuctionService auctionService;
 
-	@RequestMapping
 	private List<Auction> all() {
 		return auctionService.findAll();
 	}

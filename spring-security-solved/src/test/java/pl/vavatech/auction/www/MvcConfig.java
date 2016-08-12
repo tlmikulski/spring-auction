@@ -1,4 +1,4 @@
-package pl.vavatech.auction;
+package pl.vavatech.auction.www;
 
 import java.util.List;
 
