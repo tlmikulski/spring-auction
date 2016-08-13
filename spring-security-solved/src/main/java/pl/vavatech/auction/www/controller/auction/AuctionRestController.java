@@ -23,25 +23,26 @@ public class AuctionRestController {
 	@Inject
 	private AuctionService auctionService;
 
-	private List<Auction> all() {
+	@RequestMapping
+	public List<Auction> all() {
 		return auctionService.findAll();
 	}
 
 	@RequestMapping("/insert")
-	private ResponseEntity<Long> add(@RequestBody @Valid Auction auction) {
+	public ResponseEntity<Long> add(@RequestBody @Valid Auction auction) {
 		auctionService.insert(auction);
 		return ResponseEntity.status(HttpStatus.CREATED).body(auction.getId());
 	}
 
 	@RequestMapping("/update")
-	private ResponseEntity<Void> update(@RequestBody Auction auction) {
+	public ResponseEntity<Void> update(@RequestBody Auction auction) {
 		auctionService.update(auction);
 		return ResponseEntity.ok().build();
 	}
 
 	@RequestMapping("/delete")
 	@ResponseStatus(HttpStatus.OK)
-	private void delete(@RequestParam("id") Long id) {
+	public void delete(@RequestParam("id") Long id) {
 		auctionService.delete(id);
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -26,8 +27,8 @@ import pl.vavatech.auction.blc.service.UserService;
 @Configuration
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
-// tx
 @ComponentScan("pl.vavatech.auction.blc")
+@EnableJpaRepositories(value = "pl.vavatech.auction.blc.repo")
 @PropertySource(value = { "classpath:config.properties" })
 public class BusinessConfig {
 	@Value("${db.driverClassName}")

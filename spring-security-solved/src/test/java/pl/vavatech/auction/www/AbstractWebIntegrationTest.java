@@ -16,15 +16,19 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @Ignore
-@Transactional
+@Transactional(readOnly = false)
 @Rollback
 @WebAppConfiguration
-@ContextConfiguration(classes = MvcConfig.class)
-public class AbstractIntegrationTest {
+@ContextConfiguration(classes = AppConfig.class)
+public class AbstractWebIntegrationTest {
 	@PersistenceContext
 	private EntityManager em;
+
+	protected ObjectMapper ob = new ObjectMapper();
 
 	protected Long count(Class entity) {
 		CriteriaBuilder qb = em.getCriteriaBuilder();

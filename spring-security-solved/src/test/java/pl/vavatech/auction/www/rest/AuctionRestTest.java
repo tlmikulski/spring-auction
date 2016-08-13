@@ -1,4 +1,4 @@
-package pl.vavatech.auction.www.service;
+package pl.vavatech.auction.www.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -8,8 +8,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -19,26 +17,17 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import pl.vavatech.auction.blc.model.Auction;
-import pl.vavatech.auction.blc.repo.AutoAuctionRepo;
 import pl.vavatech.auction.blc.service.AuctionService;
-import pl.vavatech.auction.www.AbstractIntegrationTest;
+import pl.vavatech.auction.www.AbstractWebIntegrationTest;
 
-public class AuctionServiceTest extends AbstractIntegrationTest {
+public class AuctionRestTest extends AbstractWebIntegrationTest {
 	@Inject
 	AuctionService service;
-	@Inject
-	AutoAuctionRepo autoAuctionRepo;
-
-	@PersistenceContext
-	private EntityManager em;
 
 	@Autowired
 	private WebApplicationContext wac;
-	@Autowired
-	ObjectMapper ob;
+
 	private MockMvc mockMvc;
 
 	@Before
@@ -48,7 +37,7 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 
 	@Test
 	public void shouldFindAccounsByRest() throws Exception {
-		long count = autoAuctionRepo.count();
+		long count = count(Auction.class);
 
 		Auction auction = new Auction("Laptop");
 
@@ -66,36 +55,4 @@ public class AuctionServiceTest extends AbstractIntegrationTest {
 
 	}
 
-	@Test
-	public void shouldAddAuction() throws Exception {
-		long count = autoAuctionRepo.count();
-
-		// given
-		Long auctionCount = count(Auction.class);
-
-		Auction auction = new Auction("Laptop");
-
-		// when
-		service.insert(auction);
-
-		// then
-		assertThat(count(Auction.class)).isGreaterThan(auctionCount);
-	}
-
-	@Test
-	public void shouldUpdateAuction() throws Exception {
-		long count = autoAuctionRepo.count();
-
-		// given
-		Long auctionCount = count(Auction.class);
-		Long auctionId = service.insert(new Auction("Laptop"));
-
-		// when
-		Auction auction = service.find(auctionId);
-		auction.setTitle("new title");
-		service.update(auction);
-
-		// then
-		assertThat(count(Auction.class)).isGreaterThan(auctionCount);
-	}
 }
