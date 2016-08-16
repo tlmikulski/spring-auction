@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -29,13 +30,15 @@ public class AuctionService {
 
 	@Trace
 	@Transactional(readOnly = true)
+	@NotNull
 	public List<Auction> findAll() {
 		return repo.findAll();
 	}
 
 	@Trace
 	@Transactional(readOnly = true)
-	public List<Auction> findAll(FindCriteria findCriteria) {
+	public List<Auction> findAll(// @NotNull
+			FindCriteria findCriteria) {
 		return repo.findAll(findCriteria);
 	}
 

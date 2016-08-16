@@ -39,7 +39,8 @@ public class LoggingAspect {
 		long elapsed = sw.elapsed(TimeUnit.MILLISECONDS);
 		if (elapsed > maxTime) {
 
-			String params = Arrays.asList(pjp.getArgs()).stream().map(arg -> ToStringBuilder.reflectionToString(arg))
+			String params = Arrays.asList(pjp.getArgs()).stream()
+					.map(arg -> ToStringBuilder.reflectionToString(arg))
 					.collect(Collectors.joining(", "));
 
 			log.error("++++++  method " + pjp.getSignature() + "( " + params + ") " + elapsed);
