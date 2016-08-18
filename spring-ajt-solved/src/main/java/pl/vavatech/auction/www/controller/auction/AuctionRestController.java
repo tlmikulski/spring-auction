@@ -30,7 +30,7 @@ public class AuctionRestController {
 		return auctionService.findAll();
 	}
 
-	@RequestMapping(value = "/cirteria", method = RequestMethod.POST)
+	@RequestMapping(value = "/criteria", method = RequestMethod.POST)
 	private List<Auction> findByCriteria(@RequestBody FindCriteria criteria) {
 		return auctionService.findAll(criteria);
 	}

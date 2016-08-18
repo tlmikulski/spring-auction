@@ -28,9 +28,6 @@ public class AuctionService {
 	}
 
 	public Long insert(Auction auction) {
-		if (2 > 1) {
-			throw new NullPointerException("adsa");
-		}
 		return repo.insert(auction);
 	}
 

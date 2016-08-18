@@ -30,8 +30,9 @@ public class AuctionController {
 	@Inject
 	AuctionValidator auctionValidator;
 
-	@InitBinder
+	@InitBinder("auction")
 	public void init(WebDataBinder binder) {
+		binder.addValidators(auctionValidator);
 	}
 
 	// TODO
@@ -66,8 +67,6 @@ public class AuctionController {
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	private String save(@Valid @ModelAttribute("auction") Auction auction, BindingResult result,
 			Model model, RedirectAttributes redirectAttributes) {
-
-		auctionValidator.validate(auction, result);
 
 		if (result.hasErrors()) {
 			return "auction/form";
