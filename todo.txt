@@ -1,7 +1,6 @@
 -springdata
 -cache
 -scheduling
--profile
 -testy
 -asynch
 -boot
