@@ -30,7 +30,7 @@ public class AuctionController {
 	@RequestMapping(value = "/{id}/edit", method = RequestMethod.GET)
 	private String edit(ModelMap model, @PathVariable("id") Long id) {
 		model.put("auction", auctionService.find(id));
-		model.put("auctionTypes", AuctionType.values());
+		// model.put("auctionTypes", AuctionType.values());
 		return "auction/form";
 	}
 
@@ -60,12 +60,25 @@ public class AuctionController {
 		return "redirect:/auctions";
 	}
 
+	@RequestMapping(value = "/{auctionId}/show")
+	private String show(Map model, @PathVariable("auctionId") Long auctionId) {
+		Auction auction = auctionService.find(auctionId);
+		model.put("auction", auction);
+		return "auction/show";
+	}
+
 	@RequestMapping(value = "/list")
 	private String list(Map model) {
-		List<Auction> findAll = auctionService.findAll();
-		model.put("auctions", findAll);
+		List<Auction> allAuctions = auctionService.findAll();
+		model.put("auctions", allAuctions);
 
 		return "auction/list";
 	}
 
+	@RequestMapping(value = "/{auctionId}/delete")
+	private String delete(Map model, @PathVariable("auctionId") Long auctionId) {
+		auctionService.delete(auctionId);
+
+		return "redirect:/auctions/list";
+	}
 }
