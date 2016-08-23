@@ -24,13 +24,14 @@ public class HelloWorldController {
 	@RequestMapping("/helloWorld/{month}/{type}")
 	public String helloParams(Map model, @PathVariable("month") Integer month, @PathVariable("type") String type,
 			@RequestParam(value = "page", required = true) Integer page,
-			@RequestParam(value = "pageSize", required = false) Integer pageSize) {
+			@RequestParam(value = "pageSize", required = false) Integer pageSize) throws Exception {
 		model.put("month", month);
 		model.put("type", type);
 		model.put("page", page);
 		model.put("pageSize", pageSize);
 
-		return "helloWorld";
+		throw new Exception("Aaab");
+		// return "helloWorld";
 	}
 
 	@RequestMapping("/helloWorld/add")
