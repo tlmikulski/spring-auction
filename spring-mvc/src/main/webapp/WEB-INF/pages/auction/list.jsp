@@ -41,6 +41,7 @@
 
 	<table class="table table-striped table-hover">
 		<tr>
+			<th>Title</th>
 			<th>Number</th>
 			<th>Current price</th>
 			<th>Auction Type</th>
@@ -49,6 +50,7 @@
 		</tr>
 		<c:forEach var="auction" items="${auctions}">
 			<tr>
+				<td>${auction.title}</td>
 				<td>${auction.number}</td>
 				<td>${auction.currentPrice}</td>
 				<td>${auction.auctionType.fullName}</td>

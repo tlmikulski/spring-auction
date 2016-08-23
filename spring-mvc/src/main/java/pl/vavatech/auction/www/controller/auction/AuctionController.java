@@ -1,5 +1,8 @@
 package pl.vavatech.auction.www.controller.auction;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.validation.Valid;
 
@@ -55,6 +58,14 @@ public class AuctionController {
 		}
 
 		return "redirect:/auctions";
+	}
+
+	@RequestMapping(value = "/list")
+	private String list(Map model) {
+		List<Auction> findAll = auctionService.findAll();
+		model.put("auctions", findAll);
+
+		return "auction/list";
 	}
 
 }
